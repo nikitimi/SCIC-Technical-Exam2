@@ -7,8 +7,19 @@ const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
+  allConfig: {
+    overrides: [
+      {
+        files: ["__tests__/**/*"],
+        plugins: ["jest"],
+        env: {
+          "jest/globals": true,
+        },
+      },
+    ],
+  },
 });
 
-const eslintConfig = [...compat.extends("next/core-web-vitals")];
+const eslintConfig = [...compat.extends("next/core-web-vitals", "next/typescript")];
 
 export default eslintConfig;
